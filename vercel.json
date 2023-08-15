@@ -9,22 +9,14 @@
       }
     },
     {
-      "src": "public/main.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["public/clock.png"]
-      }
+      "src": "public/**",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "./index.js"
-    },
-    {
-      "src": "public/clock.png",
-      "headers": { "Cache-Control": "public, max-age=3600" },
-      "continue": true
     }
   ]
 }
