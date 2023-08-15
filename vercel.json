@@ -9,14 +9,18 @@
       }
     },
     {
-      "src": "public/**",
-      "use": "@vercel/static"
+      "src": "public/main.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "./index.js"
+    },
+    {
+      "src": "public/(.*)",
+      "dest": "./main.js"
     }
   ]
 }
