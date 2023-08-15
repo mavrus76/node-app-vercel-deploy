@@ -5,7 +5,14 @@
       "src": "./index.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["public/**", "views/**"]
+        "includeFiles": ["public/**"]
+      }
+    },
+    {
+      "src": "./index.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["views/**"]
       }
     }
   ],
