@@ -7,6 +7,13 @@
       "config": {
         "includeFiles": ["views/**"]
       }
+    },
+    {
+      "src": "public/main.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["public/clock.png"]
+      }
     }
   ],
   "routes": [
