@@ -7,6 +7,7 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
+    "vercel-build": "npm start",
     "start": "cross-env node index.js",
     "dev": "cross-env nodemon index.js",
     "test": "jest fs.spec.js",
