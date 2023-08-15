@@ -1,11 +1,12 @@
 {
   "version": 2,
+  "public": true,
   "builds": [
     {
       "src": "./index.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["public/**", "views/**"]
+        "includeFiles": ["views/**"]
       }
     }
   ],
