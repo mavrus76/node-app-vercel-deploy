@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "name": "node-app-vercel-deploy",
+  "public": true,
   "builds": [
     {
       "src": "./index.js",
@@ -17,10 +19,6 @@
     {
       "src": "/(.*)",
       "dest": "./index.js"
-    },
-    {
-      "src": "public/(.*)",
-      "dest": "./main.js"
     }
   ]
 }
