@@ -45,7 +45,7 @@ nunjucks.configure("views", {
 
 app.set("view engine", "njk");
 app.use(express.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
 app.use(cookieParser());
 
 const server = http.createServer(app);
