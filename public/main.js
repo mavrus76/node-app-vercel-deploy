@@ -1,9 +1,6 @@
-/* global UIkit, Vue */
-/* eslint-env browser */
+/*global UIkit, Vue */
 
 (() => {
-  let client = null;
-
   const notification = (config) =>
     UIkit.notification({
       pos: "top-right",
@@ -46,6 +43,16 @@
       oldTimers: [],
     },
     methods: {
+      fetchActiveTimers() {
+        fetchJson("/api/timers?isActive=true").then((activeTimers) => {
+          this.activeTimers = activeTimers;
+        });
+      },
+      fetchOldTimers() {
+        fetchJson("/api/timers?isActive=false").then((oldTimers) => {
+          this.oldTimers = oldTimers;
+        });
+      },
       createTimer() {
         const description = this.desc;
         this.desc = "";
@@ -57,6 +64,7 @@
           body: JSON.stringify({ description }),
         }).then(({ id }) => {
           info(`Created new timer "${description}" [${id}]`);
+          this.fetchActiveTimers();
         });
       },
       stopTimer(id) {
@@ -64,6 +72,8 @@
           method: "post",
         }).then(() => {
           info(`Stopped the timer [${id}]`);
+          this.fetchActiveTimers();
+          this.fetchOldTimers();
         });
       },
       formatTime(ts) {
@@ -82,35 +92,11 @@
       },
     },
     created() {
-      const wsProto = location.protocol === "https:" ? "wss:" : "ws:";
-      client = new WebSocket(`${wsProto}//${location.host}`);
-
-      client.addEventListener("open", () => {
-        const authData = {
-          USER_ID: window.USER_ID,
-          TOKEN: window.TOKEN,
-        };
-        client.send(JSON.stringify(authData));
-      });
-
-      client.addEventListener("error", (error) => {
-        console.error("WebSocket error:", error);
-      });
-
-      client.addEventListener("message", (message) => {
-        try {
-          const data = JSON.parse(message.data);
-
-          if (data.type === "all_timers") {
-            this.activeTimers = data.timers.filter((timer) => timer.isActive);
-            this.oldTimers = data.timers.filter((timer) => !timer.isActive);
-          } else if (data.type === "active_timers") {
-            this.activeTimers = data.timers;
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      });
+      this.fetchActiveTimers();
+      setInterval(() => {
+        this.fetchActiveTimers();
+      }, 1000);
+      this.fetchOldTimers();
     },
   });
 })();
