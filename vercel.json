@@ -19,6 +19,11 @@
     {
       "src": "/(.*)",
       "dest": "./index.js"
+    },
+    {
+      "src": "public/clock.png",
+      "headers": { "Cache-Control": "public, max-age=3600" },
+      "continue": true
     }
   ]
 }
