@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const path = require("path");
 const http = require("http");
 const express = require("express");
 const nunjucks = require("nunjucks");
@@ -45,7 +46,7 @@ nunjucks.configure("views", {
 
 app.set("view engine", "njk");
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname + "/public")));
 app.use(cookieParser());
 
 const server = http.createServer(app);
