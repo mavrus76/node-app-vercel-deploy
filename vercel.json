@@ -7,7 +7,7 @@
       "src": "./index.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["views/**", "public/clock.png"]
+        "includeFiles": ["views/**"]
       }
     },
     {
