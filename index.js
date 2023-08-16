@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const path = require("path");
 const express = require("express");
 const nunjucks = require("nunjucks");
 const { nanoid } = require("nanoid");
@@ -42,9 +43,8 @@ nunjucks.configure("views", {
 
 app.set("view engine", "njk");
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname + "/public")));
 app.use(cookieParser());
-// app.use(express.urlencoded({ extended: true }));
 
 const updateTimerProgress = async () => {
   const client = await clientPromise;
