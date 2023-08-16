@@ -10,3 +10,4 @@ logs/*.log
 !logs/sample.log
 
 .env
+.vercel

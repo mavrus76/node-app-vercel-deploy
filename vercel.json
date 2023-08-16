@@ -1,7 +1,6 @@
 {
   "version": 2,
   "name": "node-app-vercel-deploy",
-  "public": true,
   "builds": [
     {
       "src": "./index.js",
@@ -9,10 +8,6 @@
       "config": {
         "includeFiles": ["views/**"]
       }
-    },
-    {
-      "src": "public/main.js",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
