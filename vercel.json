@@ -1,7 +1,6 @@
 {
   "version": 2,
   "name": "node-app-vercel-deploy",
-  "public": true,
   "builds": [
     {
       "src": "./index.js",
@@ -19,11 +18,6 @@
     {
       "src": "/(.*)",
       "dest": "./index.js"
-    },
-    {
-      "src": "public/clock.png",
-      "headers": { "Cache-Control": "public, max-age=3600" },
-      "continue": true
     }
   ]
 }
